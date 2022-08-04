@@ -2,6 +2,7 @@
 
 
 @section('content')
+<meta http-equiv="refresh" content="0; URL='{{'/voluntario'}}'"/>
 
 @endsection
 

@@ -45,7 +45,7 @@
 						<form method="POST" action="{{ route('login') }}">
 							{{ csrf_field() }}
 							
-							<h1 class="cor_texto_roxo">TROPA - Sistema de Gestão de Pessoal da GCMM</h1>
+							<h1 class="cor_texto_roxo">SGV - Sistema de Gestão de Voluntarios da Defesa Civíl</h1>
 							
 							<div class="form-group row">
 								<label class="control-label col-md-2 col-sm-2 col-xs-12" for="email">Email:</label>

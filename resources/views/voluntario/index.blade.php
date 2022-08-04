@@ -24,6 +24,7 @@
                   <th>Profissões</th>
                   <th>Experiência</th>
                   <th>Ações</th>
+                  <th>Foto</th>
 
                </tr>
             </thead>
@@ -64,6 +65,10 @@
 
 
                      </td> 
+
+                     {{-- <td>
+                        <img src="storage/images/voluntarios/{{$voluntario->image}}" alt="" title="profile image" />
+                     </td>  --}}
                    </tr>
                @endforeach
 

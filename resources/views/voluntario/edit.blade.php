@@ -4,7 +4,7 @@
 @section('content')
 <div class="x_panel modal-content">
     <div class="x_title">
-       <h2>Novo(a) Voluntário</h2>
+       <h2>Editar Voluntário</h2>
        <div class="clearfix"></div>
     </div>
     <div class="x_panel">
@@ -27,18 +27,47 @@
                         </div>
                         <div class="col-md-4 mb-3 form-group">
                             <label class="form-label fw-normal">Tipo Sanguineo:</label>
-                            <input type="text" id="rh_fator" name="tipo_sanguineo" placeholder="RH" pattern=".{3,}" maxlength="3" class="form-control" required value="{{$voluntario->tipo_sanguineo}}">
+                            <select id="rh_fator" name="tipo_sanguineo" placeholder="RH" pattern=".{3,}" maxlength="3" class="form-control" required>
+                                    <option selected value="{{$voluntario->tipo_sanguineo}}">{{$voluntario->tipo_sanguineo}}</option>
+                                    <option >A+</option>
+                                    <option >A-</option>
+                                    <option >B+</option>
+                                    <option >B-</option>
+                                    <option >AB+</option>
+                                    <option >AB-</option>
+                                    <option >O+</option>
+                                    <option >O- </option>
+                            
+                            </select>
                         </div>
-                        <div class="col-md-8 mb-3 form-group">
+                        <div class="col-md-4 mb-3 form-group">
                             <label class="form-label fw-normal">Email:</label>
                             <input type="email" id="email" name="email" placeholder="Email"  maxlength="50" class="form-control" required value="{{$voluntario->email}}">
                         </div>
-                        
-                        
                         <div class="col-md-4 mb-3 form-group">
-                            <label class="form-label fw-normal">Nível de Instrução:</label>
-                            <input type="text" id="nv_instruction" name="nivel_instrucao" placeholder="Nível de Instrução"  maxlength="32" class="form-control" required value="{{$voluntario->nivel_intrucao}}">
+                            <label class="form-label fw-normal">Telefone:</label>
+                            <input type="text" id="telefone" name="telefone" placeholder="(21)XXXXX-XXXX"  maxlength="14" class="form-control" required value="{{$voluntario->telefone}}">
                         </div>
+                        
+                            
+                                <div class="col-md-4 mb-3 form-group">
+                                   <label class="form-label fw-normal">Nível de Instrução:</label>
+                                    <select id="nv_instruction" name="nivel_instrucao" placeholder="Nível de Instrução"  maxlength="32" class="form-control" required value="{{$voluntario->nivel_intrucao}}"> 
+                                     
+                                          <option selected value="{{ $voluntario->nivel_intrucao }}" >{{ $voluntario->nivel_intrucao }}</option>
+                                       
+                                         <option>Fundamental - Incompleto</option>
+                                         <option>Fundamental - Completo</option>
+                                         <option>Médio - Incompleto</option>
+                                         <option>Médio - Completo</option>
+                                         <option>Superior - Incompleto</option>
+                                         <option>Superior - Completo</option>
+                    
+                                    </select>
+                                        
+                                
+                                </div>
+                            
                         <div class="col-md-8 mb-3 form-group">
                             <label class="form-label fw-normal">Endereço:</label>
                             <input type="text" id="adress" name="endereco" placeholder="Endereço"  maxlength="50" class="form-control" required value="{{$voluntario->endereco}}">
@@ -60,10 +89,7 @@
                             <input type="text" id="municipio" name="municipio" placeholder="Municipio"  maxlength="50" class="form-control" required value="{{$voluntario->municipio}}">
                         </div>
                         
-                        <div class="col-md-5 mb-3 form-group">
-                            <label class="form-label fw-normal">Telefone:</label>
-                            <input type="text" id="telefone" name="telefone" placeholder="(21)XXXXX-XXXX"  maxlength="14" class="form-control" required value="{{$voluntario->telefone}}">
-                        </div>
+                        
                         
                         
                         
@@ -102,7 +128,7 @@
                             
                             @foreach ($voluntario->experiencias as $exp)
                               
-                            <div id="select1" class="col-md-8 col-sm-12">
+                            <div id="select1" class="col-md-8 col-sm-12 tn_value">
                                 <label class="control-label ">Experiêcia:</label>
                                 <select  required class="form-control" name="experiencia_nome[{{$exp->id}}]" id="experiencia">
                                   
@@ -173,8 +199,17 @@
 @endsection
 
 @push('scripts')
-
+<script src="{{ asset('js/vanillaMasker.min.js')}}"></script>
+<script>
+    VMasker($("#cpf")).maskPattern("999.999.999-99");
+    VMasker($("#data_nasc")).maskPattern("99/99/9999");
+    VMasker($("#telefone")).maskPattern("(99)99999-9999");
+    VMasker($("#cep")).maskPattern("99999-999");
+ 
+</script>
 <script type="text/javascript">
+
+
 
 
     //jquery

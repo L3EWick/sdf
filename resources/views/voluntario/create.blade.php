@@ -9,13 +9,20 @@
     </div>
     <div class="x_panel">
        <div class="x_content">
-        <form action="{{url('/voluntario')}}"  method="POST">
+        <form action="{{url('/voluntario')}}"  method="POST" enctype="multipart/form-data">
             {{ csrf_field() }}
                 <div class="row ">
-                        <div class="col-lg-6 mb-3 container">
+                   
+                    <div class="container">
+                        <div class="col-lg-8 mb-3 ">
                             <label class="form-label fw-normal" for="nomeCompleto">Nome Completo:</label>
                             <input required class="form-control" name="nome" type="text" id="nomeCompleto" placeholder="Nome Completo" maxlength="96">
                         </div>
+                        <div class="file-loading col-lg-4 mb-3 ">
+                            <label class="form-label fw-normal">Foto do Voluntario:</label>
+                            <input id="input-image-1" name="image" type="file" class="form-control-file">
+                        </div>
+                    </div>    
                         <div class="col-lg-4 mb-3 form-group">
                             <label class="form-label fw-normal">Data de Nascimento:</label>
                             <input required class="form-control datepicker" name="data_de_nascimento" id="data-de-nascimento" type="date" placeholder="dd/mm/aaaa" >
@@ -26,17 +33,43 @@
                         </div>
                         <div class="col-md-4 mb-3 form-group">
                             <label class="form-label fw-normal">Tipo Sanguineo:</label>
-                            <input type="text" id="rh_fator" name="tipo_sanguineo" placeholder="RH" pattern=".{3,}" maxlength="3" class="form-control" required>
+                            <select id="rh_fator" name="tipo_sanguineo" class="form-control" required>
+                                    {{-- <option selected value="{{$voluntario->tipo_sanguineo}}">{{$voluntario->tipo_sanguineo}}</option> --}}
+                                    <option selected>Escolha uma opção</option>
+                                    <option >A+</option>
+                                    <option >A-</option>
+                                    <option >B+</option>
+                                    <option >B-</option>
+                                    <option >AB+</option>
+                                    <option >AB-</option>
+                                    <option >O+</option>
+                                    <option >O- </option>
+                            
+                            </select>
                         </div>
-                        <div class="col-md-8 mb-3 form-group">
+                        <div class="col-md-4 mb-3 form-group">
                             <label class="form-label fw-normal">Email:</label>
                             <input type="email" id="email" name="email" placeholder="Email"  maxlength="50" class="form-control" required>
+                        </div>
+                        <div class="col-md-4 mb-3 form-group">
+                            <label class="form-label fw-normal">Telefone:</label>
+                            <input type="text" id="telefone" name="telefone" placeholder="(21)XXXXX-XXXX"  maxlength="14" class="form-control" required>
                         </div>
                         
                         
                         <div class="col-md-4 mb-3 form-group">
                             <label class="form-label fw-normal">Nível de Instrução:</label>
-                            <input type="text" id="nv_instruction" name="nivel_instrucao" placeholder="Nível de Instrução"  maxlength="32" class="form-control" required>
+                            <select id="nv_instruction" name="nivel_instrucao"  class="form-control" required>
+                                <option selected> Escolha uma opção</option>
+                                <option>Fundamental - Incompleto</option>
+                                <option>Fundamental - Completo</option>
+                                <option>Médio - Incompleto</option>
+                                <option>Médio - Completo</option>
+                                <option>Superior - Incompleto</option>
+                                <option>Superior - Completo</option>
+
+                            
+                            </select>
                         </div>
                         <div class="col-md-8 mb-3 form-group">
                             <label class="form-label fw-normal">Endereço:</label>
@@ -59,10 +92,10 @@
                             <input type="text" id="municipio" name="municipio" placeholder="Municipio"  maxlength="50" class="form-control" required>
                         </div>
                         
-                        <div class="col-md-5 mb-3 form-group">
+                        {{-- <div class="col-md-5 mb-3 form-group">
                             <label class="form-label fw-normal">Telefone:</label>
                             <input type="text" id="telefone" name="telefone" placeholder="(21)XXXXX-XXXX"  maxlength="14" class="form-control" required>
-                        </div>
+                        </div> --}}
                        
 
                         <div class="row clonedata">
@@ -133,7 +166,30 @@
 
 @push('scripts')
 
+<script>
+    $("#input-image-1").fileinput({
+        uploadUrl: "/site/image-upload",
+        allowedFileExtensions: ["jpg", "png", "gif"],
+        maxImageWidth: 200,
+        maxFileCount: 1,
+        resizeImage: true
+    }).on('filepreupload', function() {
+        $('#kv-success-box').html('');
+    }).on('fileuploaded', function(event, data) {
+        $('#kv-success-box').append(data.response.link);
+        $('#kv-success-modal').modal('show');
+    });
+    </script>
+<script src="{{ asset('js/vanillaMasker.min.js')}}"></script>
+<script>
+    VMasker($("#cpf")).maskPattern("999.999.999-99");
+    VMasker($("#data_nasc")).maskPattern("99/99/9999");
+    VMasker($("#telefone")).maskPattern("(99)99999-9999");
+    VMasker($("#cep")).maskPattern("99999-999");
+ 
+</script>
 <script type="text/javascript">
+
 
 
     //jquery

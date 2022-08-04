@@ -33,13 +33,14 @@
                         data-profissao= {{$profissao->id}}>
                         <i class="glyphicon glyphicon-remove "></i>
                      </a>
-                     <a
+                     {{-- <a
                      id="btn_edita_usuario"
                      class="btn btn-warning btn-xs action botao_acao btn_editar" 
                      data-valor="desabilitado" 
-                     title="Editar Funcionario">  
+                     title="Editar Funcionario"
+                     href="{{action('ProfissaoController@edit', $profissao->id)}}">  
                      <i class="glyphicon glyphicon-pencil "></i>
-                  </a>
+                  </a> --}}
 
                   </td>
                 </tr>

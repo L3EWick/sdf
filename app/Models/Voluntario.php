@@ -21,7 +21,8 @@ class Voluntario extends Model
         'email',
         'telefone',
         'nivel_intrucao',
-        'complemento'
+        'complemento',
+        'image'
 
     ];
     public function experiencias(){

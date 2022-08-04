@@ -51,4 +51,27 @@ class ExperienciaController extends Controller
 
 
 	}
+
+    public function edit($id){
+
+        $experiencia = Experiencia::find($id);
+		
+        
+        
+        return view('experiencia.edit', compact('experiencia'));
+
+
+
+
+
+    }
+    public function update(Request $request, $id){
+        
+        $experiencia = Experiencia::find($id);
+        $experiencia->nome = $request->nome;
+
+        $experiencia->save();
+    
+        return redirect()->route('experiencia.index');
+    }
 }

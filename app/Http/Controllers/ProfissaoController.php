@@ -43,4 +43,27 @@ class ProfissaoController extends Controller
 
 
 	}
+
+    public function edit($id){
+
+        $profissao = Profissao::find($id);
+		
+        
+        
+        return view('profissao.edit', compact('profissao'));
+
+
+
+
+
+    }
+    public function update(Request $request, $id){
+        
+        $profissao = Profissao::find($id);
+        $profissao->nome = $request->nome;
+
+        $profissao->save();
+    
+        return redirect()->route('profissao.index');
+    }
 }

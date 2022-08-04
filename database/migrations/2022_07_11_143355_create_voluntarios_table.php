@@ -28,6 +28,7 @@ class CreateVoluntariosTable extends Migration
             $table->string('complemento');
             $table->string('telefone', 15);
             $table->timestamps();
+            $table->String('image');
         });
     }
 

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+
 use Illuminate\Http\Request;
 use App\Models\Profissao;
 use App\Models\Experiencia;
@@ -34,27 +35,41 @@ class VoluntarioController extends Controller
     
     public function store (Request $request)
     {
-        // dd($request->profissao_nome);
+       
+        // dd($request->image);
         
         $voluntario = new Voluntario;
 
-        $voluntario->nome = $request->nome;
+        $voluntario->nome               = $request->nome;
         $voluntario->data_de_nascimento = $request->data_de_nascimento;
-        $voluntario->cpf = $request->cpf;
-        $voluntario->tipo_sanguineo = $request->tipo_sanguineo;
-        $voluntario->endereco = $request->endereco;
-        $voluntario->cep = $request->cep;
-        $voluntario->bairro = $request->bairro;
-        $voluntario->municipio = $request->municipio;
-        $voluntario->email = $request->email;
-        $voluntario->telefone = $request->telefone;
-        $voluntario->nivel_intrucao = $request->nivel_instrucao;
-        $voluntario->complemento = $request->complemento;
+        $voluntario->cpf                = $request->cpf;
+        $voluntario->tipo_sanguineo     = $request->tipo_sanguineo;
+        $voluntario->endereco           = $request->endereco;
+        $voluntario->cep                = $request->cep;
+        $voluntario->bairro             = $request->bairro;
+        $voluntario->municipio          = $request->municipio;
+        $voluntario->email              = $request->email;
+        $voluntario->telefone           = $request->telefone;
+        $voluntario->nivel_intrucao     = $request->nivel_instrucao;
+        $voluntario->complemento        = $request->complemento;
+        // $voluntario->image              = $request->image
+    //    dd($request->image);
         
-
-
+            if($request->hasFile('image')) {
+           
+                
+                $file = $request->file('image');
+                $originalname = $file->getClientOriginalName();
+                $filename = md5(microtime()).'_'.$originalname;
+                $file->move('./storage/images/voluntarios', $filename);
+                $voluntario->image = $filename;
+            }
+        
+                
         $voluntario->save();
-
+        
+        
+        
 
         foreach($request->profissao_nome as $profissao_nome)
         {
@@ -134,7 +149,8 @@ class VoluntarioController extends Controller
 
     public function update(Request $request, $id){
 
-
+        
+        // dd($request);
       
 		$voluntario = Voluntario::with('experiencias', 'profissoes')->find($id);
 
@@ -151,7 +167,7 @@ class VoluntarioController extends Controller
         $voluntario->telefone = $request->telefone;
         $voluntario->nivel_intrucao = $request->nivel_instrucao;
         $voluntario->complemento = $request->complemento;
-
+        $voluntario->save();
 
 
         // dd($request->all());

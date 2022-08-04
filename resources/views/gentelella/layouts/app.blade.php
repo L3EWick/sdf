@@ -8,7 +8,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<meta name="csrf-token" content="{{ csrf_token() }}">
   
-		<title>SDF</title>
+		<title>SVG</title>
   
 		<!--     Fonts and icons     -->
 		<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons" rel="stylesheet">
@@ -53,8 +53,8 @@
 									<img src="{{asset('img/Brasao_guarda.png')}}" alt="..."  height="55">
 								</div> --}}
 
-								<span style="color: #bfa15f; ">SDF</span>
-								<span style="font-size: 8px">V 0.1</span> 
+								<span style="color: #bfa15f; ">SVG</span>
+								<span style="font-size: 8px">V 0.5</span> 
 							</a>
 						</div>
 
