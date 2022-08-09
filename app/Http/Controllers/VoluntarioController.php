@@ -167,6 +167,19 @@ class VoluntarioController extends Controller
         $voluntario->telefone = $request->telefone;
         $voluntario->nivel_intrucao = $request->nivel_instrucao;
         $voluntario->complemento = $request->complemento;
+
+        if($request->hasFile('image')) {
+           
+                
+            $file = $request->file('image');
+            $originalname = $file->getClientOriginalName();
+            $filename = md5(microtime()).'_'.$originalname;
+            $file->move('./storage/images/voluntarios', $filename);
+            $voluntario->image = $filename;
+        }
+    
+            
+   
         $voluntario->save();
 
 
@@ -191,6 +204,21 @@ class VoluntarioController extends Controller
         return redirect()->route('voluntario.index');
     
 
+    }
+
+    public function show($id){
+
+
+        $profissao = Profissao::all();
+        $experiencias = Experiencia::all();
+		$voluntario = Voluntario::with('experiencias', 'profissoes')->find($id);
+
+        // dd($voluntario);
+        
+
+        return view('voluntario.show', compact('voluntario','experiencias','profissao'));
+        
+        
     }
   
         

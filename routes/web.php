@@ -21,7 +21,7 @@ Route::group(['middleware' => ['auth']], function () {
 	Route::resource('experiencia', 'ExperienciaController');
 	Route::resource('profissao', 'ProfissaoController');
 	Route::resource('voluntario', 'VoluntarioController');
-	
+	Route::resource('eventos', 'EventosController');
 	
 });
 

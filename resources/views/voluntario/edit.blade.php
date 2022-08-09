@@ -9,13 +9,17 @@
     </div>
     <div class="x_panel">
        <div class="x_content">
-        <form action="{{action('VoluntarioController@update', $voluntario->id)}}"  method="POST">
+        <form action="{{action('VoluntarioController@update', $voluntario->id)}}"  method="POST" enctype="multipart/form-data">
             {{ csrf_field() }}
             @method('PATCH')
                 <div class="row ">
-                        <div class="col-lg-6 mb-3 container">
+                        <div class="col-lg-8 mb-3 ">
                             <label class="form-label fw-normal" for="nomeCompleto">Nome Completo:</label>
                             <input required class="form-control" name="nome" type="text" id="nomeCompleto" placeholder="Nome Completo" maxlength="96" value="{{$voluntario->nome}}">
+                        </div>
+                        <div class="file-loading col-lg-4 mb-3 ">
+                            <label class="form-label fw-normal">Foto do Voluntario:</label>
+                            <input id="input-image-1" name="image" type="file" class="form-control-file" value="{{$voluntario->image}}">
                         </div>
                         <div class="col-lg-4 mb-3 form-group">
                             <label class="form-label fw-normal">Data de Nascimento:</label>

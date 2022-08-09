@@ -24,7 +24,7 @@
                   <th>Profissões</th>
                   <th>Experiência</th>
                   <th>Ações</th>
-                  <th>Foto</th>
+                  {{-- <th>Foto</th> --}}
 
                </tr>
             </thead>
@@ -56,14 +56,20 @@
                      </a>
                      
                      <a
-                     id="btn_edita_usuario"
-                     class="btn btn-warning btn-xs action botao_acao btn_editar" 
-                     href="{{action('VoluntarioController@edit', $voluntario->id)}}"
-                     title="Editar Funcionario">  
-                     <i class="glyphicon glyphicon-pencil "></i>
-                  </a>
+                        id="btn_edita_usuario"
+                        class="btn btn-warning btn-xs action botao_acao btn_editar" 
+                        href="{{action('VoluntarioController@edit', $voluntario->id)}}"
+                        title="Editar Funcionario">  
+                        <i class="glyphicon glyphicon-pencil "></i>
+                     </a>
 
-
+                     <a
+                        id="btn_edita_usuario"
+                        class="btn btn-primary btn-xs action botao_acao btn_editar" 
+                        href="{{action('VoluntarioController@show', $voluntario->id)}}"
+                        title="Editar Funcionario">  
+                        <i class="glyphicon glyphicon-eye-open "></i>
+                      </a>
                      </td> 
 
                      {{-- <td>
